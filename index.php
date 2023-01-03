@@ -67,7 +67,6 @@ $select_emoji_dom = "<label for='emo'>状態：
                     </label><br>";
 
 // ----------------- DBに登録済みの情報を取得 -----------------
-
 // 2. DBに格納されているデータを取得
 $stmt = $pdo->prepare("SELECT * FROM checkbox_data_table;");
 $status = $stmt->execute();

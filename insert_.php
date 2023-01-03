@@ -8,16 +8,17 @@ $chkbx = check_has_key_in_arr($_POST);
 $text = $_POST["text"];
 $status_emoji = $_POST["status_emoji"];
 
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($_POST);
+// echo '</pre>';
 
 //３．データ登録SQL作成
 // 1. SQL文を用意
-$stmt = $pdo->prepare(
-    "INSERT INTO
-                checkbox_data_table(id,    text,  chkbx, status_emoji,  date)
-                VALUES             (NULL, :text, :chkbx, :status_emoji,  sysdate())"
+$stmt = $pdo->prepare("INSERT INTO
+                        checkbox_data_table
+                            (id,    text,  chkbx, status_emoji,  date)
+                        VALUES
+                            (NULL, :text, :chkbx, :status_emoji,  sysdate())"
 );
 
 //  2. バインド変数を用意

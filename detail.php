@@ -41,7 +41,8 @@ if (!$status) {
     // echo '</pre>';
 
     $output .= "<label for='txt'>
-                    テキスト：<input type='text' name='text' id='txt' value='{$text}'></label>
+                    テキスト：<input type='text' name='text' id='txt' value='{$text}'>
+                </label>
                 <br>";
 
     foreach ($progs_array as $key) {
@@ -78,6 +79,7 @@ if (!$status) {
                                 {$select_emoji_dom}
                             </select>
                         </label><br>";
+    // 最後にoutputにidとsubmitボタンタグを追加
     $output =   "{$output}
                     {$select_emoji_dom}
                     <input type='text' hidden value='{$id}' name='id'>
