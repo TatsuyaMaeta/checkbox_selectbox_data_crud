@@ -2,9 +2,9 @@
 require_once('funcs_.php');
 $pdo = db_conn();
 
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($_POST);
+// echo '</pre>';
 
 $id = $_POST["id"];
 $text = $_POST["text"];
