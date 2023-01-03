@@ -8,7 +8,7 @@ $pdo = db_conn();
 
 $id = $_POST["id"];
 $text = $_POST["text"];
-$status_emoji = $_POST["emoji"];
+$status_emoji = $_POST["status_emoji"];
 // 配列で渡されてきた情報で中身がないとkey,value自体存在しないので関数でチェック
 $chkbx = check_has_key_in_arr($_POST);
 

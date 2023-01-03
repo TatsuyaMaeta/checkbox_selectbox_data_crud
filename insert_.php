@@ -6,7 +6,7 @@ $pdo = db_conn();
 // 配列で渡されてきた情報で中身がないとkey,value自体存在しないので関数でチェック
 $chkbx = check_has_key_in_arr($_POST);
 $text = $_POST["text"];
-$status_emoji = h($_POST["emoji"]);
+$status_emoji = $_POST["status_emoji"];
 
 echo '<pre>';
 var_dump($_POST);
