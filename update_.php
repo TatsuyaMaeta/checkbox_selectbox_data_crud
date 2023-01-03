@@ -12,8 +12,6 @@ $status_emoji = $_POST["emoji"];
 // 配列で渡されてきた情報で中身がないとkey,value自体存在しないので関数でチェック
 $chkbx = check_has_key_in_arr($_POST);
 
-
-
 //３．データ登録SQL作成
 $stmt = $pdo->prepare('UPDATE checkbox_data_table
                         SET text = :text,

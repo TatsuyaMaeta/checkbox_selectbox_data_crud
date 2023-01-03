@@ -10,8 +10,6 @@
 
 <body>
     <a href="index.php">indexに戻る</a>
-    <br>
-    <a href="update.php">データを編集する</a>
 </body>
 
 </html>
