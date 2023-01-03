@@ -29,11 +29,13 @@ if (!$status) {
     $error = $stmt->errorInfo();
     exit("ErrorQuery:" . $error[2]);
 } else {
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $text = $result["text"];
-    $chkbx = $result["chkbx"];
-    $emoji = $result["status_emoji"];
-    $chkbx = explode(",", $chkbx);
+    // データ取得
+    $result = $stmt->fetch();
+    $text = h($result["text"]);
+    $chkbx_ = h($result["chkbx"]);
+    $emoji = h($result["status_emoji"]);
+    // 文字列を配列に加工
+    $chkbx = explode(",", $chkbx_);
     // echo '<pre>';
     // var_dump($emoji);
     // echo '</pre>';
@@ -41,18 +43,24 @@ if (!$status) {
     $output .= "<label for='txt'>
                     テキスト：<input type='text' name='text' id='txt' value='{$text}'></label>
                 <br>";
+
     foreach ($progs_array as $key) {
+        // DBから取得したcheckbox一覧の中にあるものとないものを選別
         $has_value = in_array($key, $chkbx);
+
+        // ある場合
         if ($has_value) {
             $output .= "<label for='{$key}'>
-                            <input id='{$key}' type='checkbox' name='programming[]' value='{$key}' checked> {$key}
+                            <input checked id='{$key}' type='checkbox' name='programming[]' value='{$key}'> {$key}
                         </label><br>";
+            // ない場合
         } else {
             $output .= "<label for='{$key}'>
                             <input id='{$key}' type='checkbox' name='programming[]' value='{$key}'> {$key}
                         </label><br>";
         }
     }
+    // select boxのところでDBに登録されているものを選別する
     $select_emoji_dom = "";
     foreach ($status_emoji_arr as $key_emoji => $value) {
         if ($key_emoji == $emoji) {
@@ -66,13 +74,14 @@ if (!$status) {
         }
     }
     $select_emoji_dom = "<label for='emo'>状態：
-                        <select name='emoji' id='emo'>
-                            {$select_emoji_dom}
-                        </select>
-                    </label><br>";
-    $output .= $select_emoji_dom;
-    $output .=  "<input type='text' hidden value='{$id}' name='id'>
-                <button type='submit'>送信</button>";
+                            <select name='status_emoji' id='emo'>
+                                {$select_emoji_dom}
+                            </select>
+                        </label><br>";
+    $output =   "{$output}
+                    {$select_emoji_dom}
+                    <input type='text' hidden value='{$id}' name='id'>
+                    <button type='submit'>更新</button>";
 }
 ?>
 
@@ -83,14 +92,13 @@ if (!$status) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>edit画面</title>
 </head>
 
 <body>
     <h2>編集画面</h2>
-    <form action="update_.php" method="post">
+    <form action="update_.php" method="POST">
         <?= $output ?>
-
     </form>
     <hr>
 

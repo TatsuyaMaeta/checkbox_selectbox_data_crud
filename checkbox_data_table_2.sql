@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: localhost
--- 生成日時: 2023 年 1 月 03 日 16:00
+-- 生成日時: 2023 年 1 月 03 日 17:55
 -- サーバのバージョン： 10.4.27-MariaDB
 -- PHP のバージョン: 8.1.12
 
@@ -40,9 +40,9 @@ CREATE TABLE `checkbox_data_table` (
 --
 
 INSERT INTO `checkbox_data_table` (`id`, `text`, `chkbx`, `status_emoji`, `date`) VALUES
-(13, 'atvf', 'js,php', 'emoji_1', '2023-01-03 14:37:46'),
-(14, 'ほげ', 'php,css,python', 'emoji_4', '2023-01-03 14:54:31'),
-(15, 'にゅう', 'js', 'emoji_3', '2023-01-03 14:54:56');
+(13, 'コナン', 'html,python,dart', 'emoji_2', '2023-01-03 16:50:42'),
+(14, 'ほげ2', 'css', 'emoji_1', '2023-01-03 16:24:04'),
+(17, 'ドラえもん', 'js,php,html,css,python,dart', 'emoji_5', '2023-01-03 16:32:42');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -62,7 +62,7 @@ ALTER TABLE `checkbox_data_table`
 -- テーブルの AUTO_INCREMENT `checkbox_data_table`
 --
 ALTER TABLE `checkbox_data_table`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
