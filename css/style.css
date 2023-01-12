@@ -1,0 +1,60 @@
+/* https://codepen.io/jh3y/pen/bGjWLPG */
+@import url(https://unpkg.com/open-props/open-props.min.css);
+@import url(https://unpkg.com/open-props/normalize.min.css);
+
+body{
+    margin: 12px;
+}
+.select-wrapper {
+    display: grid;
+    /* min-height: 10vh; */
+    max-width: 50vh;
+    margin: 4px 12px;
+}
+
+.select-wrapper:has(input:not(:checked)) {
+    background: var(--surface-1);
+    border-color: var(--red-2);
+}
+
+input {
+    accent-color: var(--green-8);
+}
+
+label {
+    display: flex;
+    gap: var(--size-2);
+}
+
+.select-wrapper {
+    box-shadow: var(--shadow-5);
+    padding: var(--size-4);
+    border-radius: var(--radius-3);
+    border: 2px solid green;
+    list-style-type: none;
+    display: grid;
+    gap: var(--size-2);
+    background: var(--green-0);
+    transition: all 0.2s ease;
+    margin-bottom: 24px;
+}
+
+/* :checked + label {
+    font-style: italic;
+    text-decoration: line-through;
+} */
+
+.output-table {
+    border: 1px solid;
+    min-width: 50vh;
+    text-align: center;
+}
+
+.btn{
+    width: 96px;
+    height: 40px;
+    font-weight: bold;
+    /* https://blog.websuccess.jp/archives/2443/ */
+	letter-spacing: 0.8em;
+	text-indent: 0.8em;
+}

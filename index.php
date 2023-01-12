@@ -44,13 +44,16 @@ $select_emoji_dom = "<label for='emo'>状態：
 $progs_array = [
     "js", "php", "html", "css", "python", "dart"
 ];
-$form_checkbox_v = "";
+$form_checkbox_v = "<div class='select-wrapper'>";
 // 配列の数分loopを回してinputタグを作成する
 foreach ($progs_array as $v) {
-    $form_checkbox_v .= "<label for='{$v}'>
-                            <input id='{$v}' type='checkbox' name='programming[]' value='{$v}'> {$v}
-                        </label><br>";
+    $form_checkbox_v .= "
+                            <label for='{$v}'>
+                                <input id='{$v}' type='checkbox' name='programming[]' value='{$v}'>
+                                {$v}
+                            </label>";
 }
+$form_checkbox_v .= "</div>";
 
 // ----------------- selectboxの部分 -----------------
 $select_emoji_dom = "";
@@ -74,13 +77,13 @@ $status = $stmt->execute();
 // 最終出力用の変数
 $output = "";
 // 3．データ表示
-if ($status == false) {
+if (!$status) {
     //execute（SQL実行時にエラーがある場合）
     $error = $stmt->errorInfo();
     exit("ErrorQuery:" . $error[2]);
 } else {
     // テーブルタグを丸ごと作るのにまず大枠のtableとtrタグの塊を変数に格納
-    $table_header = '<table style="border:1px solid; width:400px; text-align:center;" >
+    $table_header = '<table class="output-table" >
                         <tr>
                             <th>id</th>
                             <th>text</th>
@@ -97,17 +100,18 @@ if ($status == false) {
         $chkbx = explode(",", $result["chkbx"]);
         $amount_checkbox = count($chkbx);
         $checkbox_count = 0;
+
+        // 登録されているcheckboxの数が2つ以上の場合
         if ($amount_checkbox > 1) {
             $checkbox_count = $amount_checkbox;
+
+            // 登録されているcheckboxの数が1つの場合
         } elseif ($amount_checkbox == 1 && strlen($chkbx[0]) > 0) {
             $checkbox_count = 1;
+            // 登録されているcheckboxの数がない場合
         } else {
             $checkbox_count = 0;
         }
-        // echo '<pre>';
-        // var_dump($checkbox_count);
-        // var_dump(explode(",", $result["chkbx"]));
-        // echo '</pre>';
 
         // $status_emoji_arr用のkeyを変数($emoji_key)に一度入れてからそれを使用してvalueを取り出す
         $emoji_key = $result["status_emoji"];
@@ -126,10 +130,8 @@ if ($status == false) {
                             </button>
                         </td>
                         <td>
-                            <button class='del_btn' id={$result['id']}>
-
+                            <button class='del_btn' id={$result['id']} style='width:50px;'>
                                     削除
-
                             </button>
                         </td>
                     </tr>";
@@ -148,7 +150,7 @@ $form_dom_parts_arr = array(
                 <br>",
     "body_input_checkbox" => $form_checkbox_v,
     "body_input_select" => $select_emoji_dom,
-    "body_submit_button" => "<button type='submit'>送信</button>",
+    "body_submit_button" => "<button type='submit' class='btn'>送信</button>",
 );
 ?>
 
@@ -160,10 +162,13 @@ $form_dom_parts_arr = array(
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index画面</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <form action='insert_.php' method='post'>
+
+
         <?php
         foreach ($form_dom_parts_arr as $value) {
             echo $value;
